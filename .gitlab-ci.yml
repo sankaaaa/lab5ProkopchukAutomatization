@@ -1,0 +1,37 @@
+stages:
+  - build
+  - test
+  - deploy
+
+variables:
+  MAVEN_OPTS: "-Dmaven.repo.local=$CI_PROJECT_DIR/.m2/repository"
+
+cache:
+  paths:
+    - .m2/repository
+
+build:
+  stage: build
+  image: maven:3.8.4-openjdk-17
+  script:
+    - cd lab5ProkopchukAutomatization
+    - mvn clean install
+  artifacts:
+    paths:
+      - lab5ProkopchukAutomatization/target/*.jar
+
+static_analysis:
+  stage: test
+  image: maven:3.8.4-openjdk-17
+  script:
+    - cd lab5ProkopchukAutomatization
+    - mvn checkstyle:check
+
+deploy:
+  stage: deploy
+  image: maven:3.8.4-openjdk-17
+  script:
+    - echo "Deploying the JAR file..."
+    - mv lab5ProkopchukAutomatization/target/*.jar /path/to/deploy
+  only:
+    - master
