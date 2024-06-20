@@ -24,15 +24,13 @@ jobs:
           restore-keys: ${{ runner.os }}-maven
 
       - name: Run Maven build
-        working-directory: lab5ProkopchukAutomatization
         run: mvn clean install
 
       - name: Static Code Analysis
-        working-directory: lab5ProkopchukAutomatization
         run: mvn checkstyle:check
 
       - name: Upload JAR Artifact
         uses: actions/upload-artifact@v2
         with:
           name: weather-app
-          path: lab5ProkopchukAutomatization/target/lab5ProkopchukAutomatization-1.0-SNAPSHOT.jar
+          path: target/lab5ProkopchukAutomatization-1.0-SNAPSHOT-1.0-SNAPSHOT.jar
