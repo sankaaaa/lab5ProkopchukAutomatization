@@ -39,5 +39,6 @@ public class ForecastGetter {
             return null;
         }
     }
+
 }
 
