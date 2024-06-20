@@ -14,7 +14,6 @@ build:
   stage: build
   image: maven:3.8.4-openjdk-17
   script:
-    - cd lab5ProkopchukAutomatization
     - mvn clean install
   artifacts:
     paths:
@@ -24,7 +23,6 @@ static_analysis:
   stage: test
   image: maven:3.8.4-openjdk-17
   script:
-    - cd lab5ProkopchukAutomatization
     - mvn checkstyle:check
 
 deploy:
